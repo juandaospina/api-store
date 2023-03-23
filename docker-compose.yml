@@ -1,0 +1,50 @@
+version: '3.3'
+services:
+  postgres: 
+    image: postgres:13
+    container_name: app_store
+    environment:
+      - POSTGRES_DB=app_store
+      - POSTGRES_USER=jdospina
+      - POSTGRES_PASSWORD=ADMIN0123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_appstore
+    environment:
+        - PGADMIN_DEFAULT_EMAIL=admin@email.com
+        - PGADMIN_DEFAULT_PASSWORD=root
+    ports: 
+      - 5050:80 
+
+  # db: 
+  #   image: mysql:8
+  #   platform: linux/amd64
+  #   # container_name: mysql_app_store
+  #   environment:
+  #     - MYSQL_DATABASE=app_store
+  #     - MYSQL_ROOT_PASSWORD=ADMIN0123
+  #     - MYSQL_USER=
+  #     - MYSQL_PASSWORD=ADMIN0123
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_HOST=db
+  #   ports:
+  #     - 3306:3306
+  #   # volumes:
+  #   #   - ~/mysql_data:/var/lib/mysql 
+  
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=ADMIN0123
+  #     - MYSQL_USER=root
+  #     - MYSQL_PASSWORD=ADMIN0123
+  #     - PMA_HOST=db
+  #   ports:
+  #     - 8080:80
+  #   depends_on:
+  #     - db
