@@ -16,13 +16,13 @@ const SchemaOrder = {
   createdAt: {
     allowNull: false,
     field: "created_at",
-    defaultValue: Sequelize.NOW,
+    defaultValue: new Date(),
     type: DataTypes.DATE,
   },
   updatedAt: {
     allowNull: false,
     field: "updated_at",
-    defaultValue: Sequelize.NOW,
+    defaultValue: new Date(),
     type: DataTypes.DATE,
   },
   customerId: {
@@ -30,7 +30,7 @@ const SchemaOrder = {
     allowNull: false,
     type: DataTypes.STRING,
     references: {
-      model: Customer,
+      model: "customers",
       key: "id",
     },
     onUpdate: "CASCADE",
@@ -39,11 +39,11 @@ const SchemaOrder = {
 };
 
 class Order extends Model {
-  // static associate(models) {
-  //   this.belongsTo(models.Customer, {
-  //     as: "customer",
-  //   });
-  // }
+  static associate(models) {
+    this.belongsTo(models.Customer, {
+      as: "customer",
+    });
+  }
 }
 
 module.exports = {

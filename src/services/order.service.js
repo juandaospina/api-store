@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 const boom = require("@hapi/boom");
 
 const { Order } = require("../db/models/order.model");
+const { Customer } = require("../db/models/customer.model");
 
 class OrderService {
   //   constructor() {}
@@ -13,7 +14,13 @@ class OrderService {
   }
 
   async findAll() {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      include: {
+        model: Customer,
+        as: "customer",
+        attributes: ["id", "name", "lastname", "phone"],
+      },
+    });
     if (!orders) throw boom.badGateway();
     return orders;
   }

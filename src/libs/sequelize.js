@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 const { URI } = require("../config/connection");
 const setupModels = require("../db/models");
 
-const sequelize = new Sequelize(URI, { dialect: "postgres" });
+const sequelize = new Sequelize(URI, { dialect: "postgres", logging: true });
 
 setupModels(sequelize);
 

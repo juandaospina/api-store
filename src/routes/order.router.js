@@ -28,7 +28,7 @@ router.get(
 // Return all orders
 router.get("/api/orders", async (req, res, next) => {
   try {
-    const results = service.findAll();
+    const results = await service.findAll();
     res.status(200).json(results);
   } catch (error) {
     next(error);

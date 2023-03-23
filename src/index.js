@@ -6,7 +6,7 @@ const { productRouter } = require("./routes/product.router");
 const { userRouter } = require("./routes/user.router");
 const { customerRouter } = require("./routes/customer.router");
 const { categoryRouter } = require("./routes/category.router");
-// const { orderRouter } = require("./routes/order.router");
+const { orderRouter } = require("./routes/order.router");
 const { logErrors, errorHandler, boomErrorHandler, querysErrorHandler } = require("./middlewares/error.handler");
 const { globalRequest } = require("./middlewares/global.request");
 
@@ -31,7 +31,7 @@ app.use(productRouter);
 app.use(userRouter);
 app.use(customerRouter);
 app.use(categoryRouter);
-// app.use(orderRouter);
+app.use(orderRouter);
 
 // error handler middleware
 app.use(globalRequest);
